@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/admin/">Login Page</a></h1>
+
+        </div>
+        
+        
+    </div>
+    <!-- END Header -->
+    <!-- Content -->
+    <div id="content" class="colM">
+<div id="content-main " class="content-center">
+{% if messages %}
+{% for message in messages %}
+<p {% if message.tags %}class="alert alert-{{message.tags}}">{{message}}</p>{% endif %}
+{% endfor %}
+{% endif %}
+<form action="/user/login/" method="post" id="login-form">
+    {% csrf_token %}
+  <div class="form-row">
+    {{form.username.label_tag}}
+    {{form.username}}
+  </div>
+  <br>
+  <div class="form_row">
+    {{form.password.label_tag}}
+    {{form.password}}
+  </div>
+<br>
+
+  <div class="submit-row">
+    <label>&nbsp;</label><input type="submit" value="Log in">
+    <button class="btn "><a href="/user/register">Register</a></button>
+  </div>
+</form>
+
+</div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+{% endblock %}}

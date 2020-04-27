@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>user Profile</title>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectBox.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/SelectFilter2.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+    
+
+<meta name="robots" content="NONE,NOARCHIVE">
+</head>
+
+
+<body class=" app-auth model-user change-form"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/user/">User Home</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+            
+                Welcome,
+                <strong>{{user}}</strong>.
+             
+                    <a href="/">View site</a> /
+                
+                <a href="/user/password_change/">Change password</a> /
+                
+                <a href="/user/logout/">Log out</a>
+            
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>Change user</h1>
+        {% if messages %}
+{% for message in messages %}
+<p {% if message.tags %}class="alert alert-{{message.tags}}">{{message}}</p>{% endif %}
+{% endfor %}
+{% endif %}
+        <div id="content-main">
+
+
+
+
+<form action="/user/updateProfile/" method="post" id="user_form" novalidate><input type="hidden" name="csrfmiddlewaretoken" value="tEivkbGs4z3rGgJ2tbwoNY7zQYrhD5bQmNeMp60BC3VhwQXpeC0EoVZCnrj5tiqs" >
+<div>
+ {% csrf_token %}
+  <fieldset class="module aligned ">
+  
+        <div class="form-row field-username">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_username">Username:</label>
+                        
+                            <input type="text" name="username" value="{{user}}" class="vTextField" maxlength="150" autocapitalize="none" autocomplete="username" required id="id_username">
+                        
+                    
+                    
+                        <div class="help">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</div>
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-password">
+            
+            
+                <div>
+                    
+                    
+                        <label for="id_password">Password:</label>
+                        
+                            <div id="id_password">
+
+<strong>algorithm</strong>: pbkdf2_sha256
+
+<strong>iterations</strong>: 180000
+
+<strong>salt</strong>: A0eicP******
+
+<strong>hash</strong>: Tew0k5**************************************
+
+</div>
+                        
+                    
+                    
+                        <div class="help">Raw passwords are not stored, so there is no way to see this user’s password, but you can change the password using <a href="../password/">this form</a>.</div>
+                    
+                </div>
+            
+        </div>
+    
+</fieldset>
+
+
+  <fieldset class="module aligned ">
+    <h2>Personal info</h2>
+    
+    
+        <div class="form-row field-first_name">
+            
+            
+                <div>
+                    
+                    
+                        <label for="id_first_name">First name:</label>
+                        
+                            <input type="text" name="first_name" class="vTextField" maxlength="30" id="id_first_name">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-last_name">
+            
+            
+                <div>
+                    
+                    
+                        <label for="id_last_name">Last name:</label>
+                        
+                            <input type="text" name="last_name" class="vTextField" maxlength="150" id="id_last_name">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-email">
+            
+            
+                <div>
+                    
+                    
+                        <label for="id_email">Email address:</label>
+                        
+                            <input type="email" name="email" class="vTextField" maxlength="254" id="id_email">
+                        
+                    
+                    
+                </div>
+            
+        </div>
+         <div class="form-row field-phone">
+            
+            
+                <div>
+                    
+                    
+                       <label for="phone">Enter your phone number:</label>
+
+<input type="tel" id="phone" name="phone"  pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"required>
+    
+<small>Format: 123-456-7890</small>                
+                    
+                </div>
+            
+        </div>
+    
+</fieldset>
+
+
+
+    
+</div>
+                        
+             
+                </div>
+            
+        </div>
+      
+    
+</div>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+</fieldset>
+
+
+  <fieldset class="module aligned ">
+ 
+  
+
+            
+        </div>
+    
+        <div class="form-row field-date_joined">
+            
+            
+                <div>
+                 </div>
+    
+        <div class="form-row field-image">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_image">Image:</label>
+                        
+                            <p class="file-upload"><a href="/media/user/images/"></a><br>
+Change:
+<input type="file" name="image" accept="image/*" id="id_image"></p>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+
+    
+</fieldset>
+<div class="submit-row">
+
+<input type="submit" value="Save" class="default" name="_save">
+
+    
+    <p class="deletelink-box"><a href="user/delete/" class="deletelink">Delete Account</a></p>
+
+
+</div>
+
+
+
+    <script type="text/javascript"
+            id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+            >
+    </script>
+
+
+
+
+<script type="text/javascript"
+        id="django-admin-prepopulated-fields-constants"
+        src="/static/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+        
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+
+
+<!-- END Container -->
+
+</body>
+</html>

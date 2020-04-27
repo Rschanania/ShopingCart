@@ -1,0 +1,75 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/user/register/">Registration Page</a></h1>
+
+        </div>
+        
+        
+    </div>
+    <!-- END Header -->
+    <!-- Content -->
+    <div id="content" class="colM">
+<div id="content-main " class="content-center">
+<form action="/user/register/" method="post" id="login-form">
+  {% csrf_token %}
+  <div class="form-row">
+    {% if form.username.errors %}
+    {% for error in form.username.errors %}
+    <p class="errorlist">{{error}}</p>
+    {% endfor %}
+    {% endif %}
+    {{form.username.label_tag}}
+    {{form.username}}
+  </div>
+  <br>
+  <div class="form_row">
+    {% if form.password1.errors %}
+    {% for error in form.password1.errors %}
+    {{error}}
+    {% endfor %}
+    {% endif %}
+    {{form.password1.label_tag}}
+    {{form.password1}}
+  </div>
+  <br>
+
+  <div class="form_row">
+    {% if form.password2.errors %}
+    {% for error in form.password2.errors %}
+    {{error}}
+    {% endfor %}
+    {% endif %}
+    {{form.password2.label_tag}}
+    {{form.password2}}
+  </div>
+  
+
+<br>
+<div class="submit-row">
+  <label>&nbsp;</label><input type="submit" value="Sign Up">
+</div>
+<div>
+	<a href="/user/login">already User</a>
+</div
+
+</form>
+
+</div>       
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+{% endblock %}}
