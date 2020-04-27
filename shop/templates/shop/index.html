@@ -57,9 +57,9 @@ padding-right: 0;
                 <div class="carousel-item active">
                     {% for i in product %}
                     <div class="col-xs-3 col-sm-3 col-md-3">
-                        <div class="card align-items-center" style="width: 18rem;">
+                        <div class="card align-items-center border-info" style="width: 18rem;">
                             <img src='/media/{{i.image}}' class="card-img-top" alt="...">
-                            <div class="card-body">
+                            <div class="card-body border-info">
                                 <h5 class="card-title" id="namepr{{i.id}}">{{i.product_name}}</h5>
                                 <p class="card-text">{{i.desc|slice:"0:53"}}...</p>
                                 <h6 class="card-title" >Price: <span id="pricepr{{i.id}}">{{i.price}}</span></h6>

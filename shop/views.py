@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 from django.http import HttpResponse
-MERCHANT_KEY = 'Your_Merchan_Key'
+MERCHANT_KEY = 'iiWAajVBPw!akq9q'
 
 def index(request):
     allProds = []
@@ -115,7 +115,7 @@ def checkout(request):
         # Request paytm to transfer the amount to your account after payment by user
         param_dict = {
 
-                'MID': 'Your _Mid',
+                'MID': 'pkylkY67043143371227',
                 'ORDER_ID': str(order.order_id),
                 'TXN_AMOUNT': str(amount),
                 'CUST_ID': email,
