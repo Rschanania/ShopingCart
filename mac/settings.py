@@ -23,7 +23,7 @@ STATIC_DIR=os.path.join(BASE_DIR,'static')
 SECRET_KEY = '0#bo!#p2=ai-)7_o9&8d0rb1k!aklg@lk7+pj0nlaln7ihpx=!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -125,6 +125,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiels')
 MEDIA_URL='/media/'
 
 
