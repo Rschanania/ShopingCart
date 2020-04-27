@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login as authorize, logout as deau
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib import messages
-from .models import UserProfile
+from . models import UserProfile
 
 
 def logout(request):
@@ -20,12 +20,13 @@ def Home(request):
     if request.user.is_authenticated:
         return redirect('/user/profile')
 
-    return render(request, 'home.html')
+    return render(request,'home.html')
 
 
 def login(request):
+
     if request.method == "POST":
-        # form=AuthenticationForm()
+       # form=AuthenticationForm()
         uname = request.POST['username']
         upass = request.POST['password']
         user = authenticate(username=uname, password=upass)
@@ -41,7 +42,6 @@ def login(request):
         form = AuthenticationForm()
         return render(request, 'login.html', {'form': form})
 
-
 # Create your views here.
 
 
@@ -52,11 +52,12 @@ def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            
             form.save()
-
+            
             messages.add_message(request, messages.INFO,
                                  "user successfully created ")
-
+            
             return redirect('/user/login/')
 
     return render(request, 'register.html', {'form': form})
@@ -64,60 +65,58 @@ def register(request):
 
 def profile(request):
     if request.user.is_authenticated:
-        user = User.objects.get(username=request.user)
+        user=User.objects.get(username=request.user)
         print(user.id)
-        # pro=UserProfile.objects.filter(user_id=user.id)
-        # print(pro.phone
-        try:
-            user_pro = user.userprofile
-            return render(request, 'profile.html', {'user': user, 'pro': user_pro})
-        except Exception :
-            messages.info(request,"Please update your profile first")
-            return redirect('/user/updateProfile')
-
+        #pro=UserProfile.objects.filter(user_id=user.id)
+        #print(pro.phone
+        user_pro=user.userprofile
         
+        return render(request, 'profile.html',{'user':user,'pro':user_pro})
     else:
         messages.info(request, 'YOu are not loged in ')
         return redirect('/user/login')
 
 
 def updateProfile(request):
-    if request.method == 'POST' and request.user.is_authenticated:
+    if request.method=='POST' and request.user.is_authenticated:
         print("hello")
         print(request.POST)
         u = request.user
         print(u)
         # username=request.POST['username']
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        email = request.POST['email']
-        user = User.objects.get(username=u)
-        phone = request.POST['phone']
-
-        user.first_name = first_name
-        user.last_name = last_name
-        user.email = email
+        first_name=request.POST['first_name']
+        last_name=request.POST['last_name']
+        email=request.POST['email']
+        user=User.objects.get(username=u)
+        phone=request.POST['phone']
+        
+        user.first_name=first_name
+        user.last_name=last_name
+        user.email=email
         user.save()
 
         user = request.user
 
-        # .update(user_id=user.id,phone=phone,image=image)
-        if (UserProfile.objects.filter(user_id=user.id).count() > 0):
-            User_Data = UserProfile.objects.get(user_id=user.id)
-            User_Data.phone = phone
-
+        #.update(user_id=user.id,phone=phone,image=image)
+        if (UserProfile.objects.filter(user_id=user.id).count()>0):
+            User_Data=UserProfile.objects.get(user_id=user.id)
+            User_Data.phone=phone
+            
             User_Data.save()
         else:
-            UserProfile.objects.create(user_id=user.id, phone=phone)
+            UserProfile.objects.create(user_id=user.id,phone=phone)
 
-        # user.update(first_name=first_name,last_name=last_name,email=email)
+        
 
+        
+        #user.update(first_name=first_name,last_name=last_name,email=email)
+        
         data = {'user': user}
         return render(request, 'update_Profile.html', data)
     elif request.user.is_authenticated:
         u = request.user
         print(request)
-        
-        return render(request, 'update_Profile.html')
+        messages.info(request, 'YOu are not loged in ')
+        return render(request,'update_Profile.html')
     else:
         return redirect('/user/login')
