@@ -1,10 +1,15 @@
-<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+{% extends 'shop/basic.html' %}
+
+
+
+
+
+{% block css %}
 <style type="text/css">
   <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"crossorigin="anonymous"><script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
-    {
-    % load static %
-  }
+    {% load static %}
 
   * {
     margin: 0;
@@ -122,12 +127,15 @@
     font-size: 18px;
   }
 </style>
+{% endblock %}
 
+{% block body %}
 <div class="wrapper">
   <div class="left">
     <img src="http://source.unsplash.com/270x200/?men/" alt="user" width="100">
     <h4>{{user.username}}</h4>
     <p>username</p>
+    <a href="/shop/">HomePage</a>
   </div>
   <div class="right">
     <div class="info">
@@ -153,12 +161,7 @@
     </div>
 
 
-    <div class="social_media">
-      <ul>
-        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-        <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-      </ul>
-    </div>
+   
   </div>
 </div>
+{% endblock %}

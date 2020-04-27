@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,reverse
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login as authorize, logout as deauth
 from django.contrib.auth.models import User
@@ -20,7 +20,7 @@ def Home(request):
     if request.user.is_authenticated:
         return redirect('/user/profile')
 
-    return render(request,'home.html')
+    return redirect('/user/login')
 
 
 def login(request):
@@ -116,7 +116,7 @@ def updateProfile(request):
     elif request.user.is_authenticated:
         u = request.user
         print(request)
-        messages.info(request, 'YOu are not loged in ')
+       
         return render(request,'update_Profile.html')
     else:
         return redirect('/user/login')
