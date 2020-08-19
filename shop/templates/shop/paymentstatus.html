@@ -2,15 +2,22 @@
 {% block title%} Shoping Cart Tracker{% endblock %}
 {% block body %}
 <div class="container">
-    {{response}}
+
     <div class="col my-4">
 
-        <h2>Payment status regarding your order Id {{response.ORDERID}}</h2>
-        {% if response.RESPCODE == '01' %}
-        ORDER SUCCESS
-        {% else %}
-        ORDER FAILURE
-        {% endif%}
+        <p class="text-info my-4"> {{response}}</p>
+
+        <div
+            class="col-md-5 col-11 mx-auto bg-light d-flex justify-content-center align-items-center shadow my-4">
+            <h5 class="text-info">Payment status regarding your order Id {{response.ORDERID}}</h5>
+            {% if response.RESPCODE == '01' %}
+            <p class="text-success font-weight-bold"> ORDER SUCCESS</p>
+            {% else %}
+            <p class="text-danger font-weight-bold">ORDER FAILURE</p>
+            {% endif%}
+
+        </div>
+
 
     </div>
 
